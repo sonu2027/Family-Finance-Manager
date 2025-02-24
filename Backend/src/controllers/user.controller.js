@@ -4,7 +4,9 @@ import { User } from "../models/user.model.js";
 
 export const registerUser = async (req, res) => {
   try {
-    const { fullName, email, password, role } = req.body;
+    const { name, email, password, role } = req.body;
+    console.log(req.body);
+    
 
     // Check if the user already exists
     const existingUser = await User.findOne({ email });
@@ -12,16 +14,22 @@ export const registerUser = async (req, res) => {
       return res.status(409).json({ message: "User already exists" });
     }
 
+    console.log("existingUser", existingUser);
+    
+
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create the user
     const newUser = await User.create({
-      fullName,
+      name,
       email,
       password: hashedPassword,
       role,
     });
+
+    console.log("newUser", newUser);
+    
 
     res.status(201).json({
       message: "User registered successfully",

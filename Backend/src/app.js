@@ -23,6 +23,7 @@ import businessRouter from "./routes/business.route.js";
 import documentRouter from "./routes/document.route.js";
 import notificationRouter from "./routes/notification.route.js";
 import transactionRouter from "./routes/transaction.route.js";
+import emailRouter from "./routes/email.route.js";
 
 app.use("/api/user", userRouter);
 app.use("/api/assets", assetRouter);
@@ -31,6 +32,6 @@ app.use("/api/business", businessRouter);
 app.use("/api/document", documentRouter);
 app.use("/api/notification", notificationRouter);
 app.use("/api/transaction", transactionRouter);
-
+app.use("/api/email", emailRouter);
 
 export default app;
